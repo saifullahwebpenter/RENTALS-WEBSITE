@@ -1,0 +1,55 @@
+<div class="parent">
+  Parent Div
+  <div class="child">
+    Child Div
+  </div>
+</div>
+<style>
+  .parent {
+  width: 200px;
+  height: 200px;
+  background-color: lightblue;
+}
+
+.parent.hovered {
+  background-color: lightgreen;
+}
+
+.child {
+  width: 100px;
+  height: 100px;
+  background-color: lightcoral;
+}
+
+.child.hovered {
+  background-color: lightpink;
+}
+
+</style>
+<script>
+  const parentDiv = document.querySelector('.parent');
+const childDiv = document.querySelector('.child');
+
+parentDiv.addEventListener('mouseenter', () => {
+  if (!childDiv.matches(':hover')) {
+    parentDiv.classList.add('hovered');
+  }
+});
+
+parentDiv.addEventListener('mouseleave', () => {
+  parentDiv.classList.remove('hovered');
+});
+
+childDiv.addEventListener('mouseenter', () => {
+  parentDiv.classList.remove('hovered'); // To disable parent's hover effect
+  childDiv.classList.add('hovered');
+});
+
+childDiv.addEventListener('mouseleave', () => {
+  childDiv.classList.remove('hovered');
+  if (!childDiv.matches(':hover')) {
+    parentDiv.classList.add('hovered');
+  }
+});
+
+</script>
